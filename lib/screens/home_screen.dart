@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final appBloc = AppBloc();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Flutter Expert Bot"),
+        title: const Text("Ask Me"),
       ),
       body: BlocConsumer<AppBloc, AppState>(
         bloc: appBloc,
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 messages[index].role == 'user'
                                     ? "Husen"
-                                    : "Flutter Expert",
+                                    : "Assistant",
                                 style: TextStyle(
                                   color: messages[index].role == 'user'
                                       ? Colors.white
@@ -58,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
-                                  color: Colors.amber.withOpacity(0.1),
+                                  color: messages[index].role == 'user'
+                                      ? Colors.green
+                                      : Colors.black,
                                 ),
                                 child: Text.rich(TextSpan(children: [
                                   TextSpan(
@@ -82,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   Container(
-                    height: 120,
+                    height: 100,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 16),
                     child: Row(
@@ -121,7 +123,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     );
                                     debugPrint(messages.first.parts.first.text);
                                   }
-                                  print("button pressed----------");
                                 },
                                 icon: const Icon(Icons.send),
                                 color: Theme.of(context).primaryColorDark,
